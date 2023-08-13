@@ -161,3 +161,22 @@ startObserving();
 
 // Event listener to detect when the user refreshes the page or switches tab
 window.addEventListener('visibilitychange', resetAskPassword);
+
+// Prevent inspect element
+// Prevent rigth click
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
+// Prevent shortcut for developer tools
+document.addEventListener('keydown', (e) => {
+    // For Windows
+    if (e.ctrlKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67) || e.keyCode === 123) {
+        e.preventDefault();
+    }
+    
+    // For macOS
+    if (e.metaKey && (e.altKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67))) {
+        e.preventDefault();
+    }
+});
